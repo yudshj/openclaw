@@ -28,7 +28,7 @@ async function probeRpcSupport(cliPath: string): Promise<RpcSupportResult> {
   const cached = rpcSupportCache.get(cliPath);
   if (cached) return cached;
   try {
-    const result = await runCommandWithTimeout([cliPath, "rpc", "--help"], { timeoutMs: 2000 });
+    const result = await runCommandWithTimeout([cliPath, "rpc", "--help"], { timeoutMs: 20000 });
     const combined = `${result.stdout}\n${result.stderr}`.trim();
     const normalized = combined.toLowerCase();
     if (normalized.includes("unknown command") && normalized.includes("rpc")) {
